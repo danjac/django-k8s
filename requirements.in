@@ -1,0 +1,4 @@
+Django
+django-environ
+dj-database-url
+psycopg2-binary
