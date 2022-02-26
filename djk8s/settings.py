@@ -28,7 +28,7 @@ env = environ.Env()
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["minikube.local"]
+ALLOWED_HOSTS = ["localhost"]
 
 
 # Application definition

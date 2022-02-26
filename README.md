@@ -15,12 +15,6 @@ eval $(minikube -p custom docker-env)
 ## Create pods
 
 ```bash
-skaffold dev
+skaffold dev --port-forward
 ```
-
-## View in browser
-
-1. Run `minikube ip` and make a note of the IP address.
-2. In _/etc/hosts/_ add line `192.168.49.2    minikube.local`.
-3. Open browser at _https://minikube.local_.
 
