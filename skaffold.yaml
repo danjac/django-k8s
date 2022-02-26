@@ -1,0 +1,21 @@
+apiVersion: skaffold/v2beta26
+kind: Config
+metadata:
+  name: djk-s
+build:
+  artifacts:
+  - image: django-webapp
+    docker:
+      dockerfile: Dockerfile
+deploy:
+  kubectl:
+    manifests:
+    - k8s/ingress.yaml
+    - k8s/secrets.yaml
+    - k8s/django/deployment.yaml
+    - k8s/django/migrations.yaml
+    - k8s/django/service.yaml
+    - k8s/postgres/deployment.yaml
+    - k8s/postgres/service.yaml
+    - k8s/postgres/volume.yaml
+    - k8s/postgres/volume_claim.yaml

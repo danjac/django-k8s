@@ -1,26 +1,21 @@
 Basic Django and Kubernetes setup for local deployment.
 
+Requires minikube and skaffold:
+
+https://skaffold.dev/docs/quickstart/
+
 ## Create images
 
 ```bash
-minikube start
-minikube addons enable ingress
-minikube build . -t django-webapp
+minikube start --profile custom
+skaffold config set --global local-cluster true
+eval $(minikube -p custom docker-env)
 ```
 
 ## Create pods
 
 ```bash
-kubectl create secret generic app-secret --from-env-file=env
-
-kubectl apply -f ./k8s/postgres
-kubectl apply -f ./k8s/django
-kubectl apply -f ./k8s/ingress.yaml
-
-kubectl get deployments
-kubectl get pods
-kubectl get services
-kubectl get ingress
+skaffold dev
 ```
 
 ## View in browser
