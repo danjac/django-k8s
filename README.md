@@ -18,3 +18,14 @@ eval $(minikube -p custom docker-env)
 skaffold dev --port-forward
 ```
 
+## Set up database
+
+First run `kubectl get pods` to find the name of the **django** pod.
+
+e.g.
+
+```bash
+kubectl exec django-6f94c5dfcf-vmxgz -it -- ./manage.py migrate
+kubectl exec django-6f94c5dfcf-vmxgz -it -- ./manage.py createsuperuser
+```
+
