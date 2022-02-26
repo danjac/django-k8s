@@ -11,6 +11,8 @@ minikube build . -t django-webapp
 ## Create pods
 
 ```bash
+kubectl create secret generic app-secret --from-env-file=env
+
 kubectl apply -f ./k8s/postgres
 kubectl apply -f ./k8s/django
 kubectl apply -f ./k8s/ingress.yaml

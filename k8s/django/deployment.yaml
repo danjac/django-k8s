@@ -18,33 +18,13 @@ spec:
           image: django-webapp:latest
           command: ["./manage.py", "runserver", "0.0.0.0:8000"]
           ports:
-          - containerPort: 8000
-          env:
-            - name: DJANGO_SETTINGS_MODULE
-              value: 'djk8s.settings'
-
-            - name: SECRET_KEY
-              value: "seekrit!"
-
-            - name: POSTGRES_NAME
-              value: postgres
-
-            - name: POSTGRES_USER
-              valueFrom:
-                secretKeyRef:
-                  name: postgres-credentials
-                  key: user
-
-            - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: postgres-credentials
-                  key: password
-
+            - containerPort: 8000
+          envFrom:
+            - secretRef:
+                name: app-secret
           volumeMounts:
             - name: postgres-volume-mount
               mountPath: /var/lib/busybox
-
       volumes:
         - name: postgres-volume-mount
           persistentVolumeClaim:

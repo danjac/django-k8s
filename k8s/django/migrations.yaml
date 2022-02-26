@@ -9,29 +9,22 @@ spec:
         - name: django
           imagePullPolicy: IfNotPresent
           image: django-webapp:latest
-          command: ['python', 'manage.py', 'migrate']
           env:
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: app-secret
+                  key: SECRET_KEY
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
-                  name: postgres-credentials
-                  key: user
-
+                  name: app-secret
+                  key: POSTGRES_USER
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: postgres-credentials
-                  key: password
-
-            - name: POSTGRES_NAME
-              value: postgres
-
-            - name: DJANGO_SETTINGS_MODULE
-              value: 'djk8s.settings'
-
-            - name: SECRET_KEY
-              value: "seekrit!"
-
-
+                  name: app-secret
+                  key: POSTGRES_PASSWORD
+          command: ['python', 'manage.py', 'migrate']
       restartPolicy: Never
   backoffLimit: 5

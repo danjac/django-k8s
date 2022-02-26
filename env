@@ -1,0 +1,5 @@
+DJANGO_SETTINGS_MODULE=djk8s.settings
+POSTGRES_NAME=postgres
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+SECRET_KEY=seekrit
