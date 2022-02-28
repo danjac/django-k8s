@@ -14,12 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.http import HttpResponse
 from django.urls import path
+from django.template.response import TemplateResponse
+
 
 
 def health_check(request):
-    return HttpResponse("OK")
+    return TemplateResponse(request, "index.html")
 
 
 urlpatterns = [
